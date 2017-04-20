@@ -17,6 +17,19 @@ def ll_of_depths(root)
   end
 end
 
+def balanced?(root)
+  return 0 unless root
+
+  lh = balanced?(root.left)
+  return -1 if lh == -1
+  rh = balanced?(root.right)
+  return -1 if rh == -1
+
+  return -1 if (lh - rh).abs > 1
+
+  [lh, rh].max + 1
+end
+
 def find_height(root)
   return 0 unless root
   [ find_height(root.left) , find_height(root.right) ].max + 1
@@ -37,7 +50,7 @@ def nodes_at_level(root, level, hash)
 end
 
 
-11.times do |i|
+(1..10).to_a.map do |i|
   instance_variable_set("@n#{i}", BNode.new(i))
 end
 
@@ -52,3 +65,10 @@ end
 @n5.right = @n7
 
 ll_of_depths(@n1)
+
+p "balanced: #{(balanced?(@n1)) > 0}"
+
+@n11 = BNode.new(11)
+@n7.left = @n11
+
+p "balanced: #{(balanced?(@n1)) > 0}"
