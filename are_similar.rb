@@ -1,24 +1,3 @@
-# int len = A.size();
-# int flag = 1, ne = 0, x = -1, y;
-# for (int i = 0; i < len; i++) {
-#   if (A[i] != B[i]) {
-#     flag = 0;
-#     ne++;
-#     if (x == -1)
-#       x = i;
-#     else
-#       y = i;
-#   }
-# }
-# if (flag == 1) return true;
-# if (ne != 2) return false;
-# if (ne == 2) {
-#   if (A[x] == B[y] && A[y] == B[x])
-#     return true;
-#   else return false;
-# }
-
-
 def areSimilar(a, b)
   flag = 1
   ne = 0

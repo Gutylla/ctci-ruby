@@ -7,6 +7,9 @@ def merge_sort(unsorted_array)
   left = merge_sort(left)
   right = merge_sort(right)
 
+  p left
+  p right
+
   unsorted_array = merge(left, right, unsorted_array)
 end
 
