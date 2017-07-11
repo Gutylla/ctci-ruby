@@ -1,21 +1,17 @@
-# DFS
+  # DFS
 def depth_first_search(adj_matrix, source_index, end_index)
-  node_stack = [source_index]
+  stack = [source_index]
 
-  loop do
-    curr_node = node_stack.pop
+  while !stack.empty?
+    curr_node = stack.pop
 
-    return false if curr_node == nil
-    if curr_node == end_index
-      p curr_node
-      return true
-    end
+    return true if curr_node == end_index
 
     children = (0..adj_matrix.length-1).to_a.select do |i|
       adj_matrix[curr_node][i] == 1
     end
 
-    node_stack = node_stack + children
+    stack = stack + children
   end
 end
 
@@ -51,5 +47,5 @@ adj_matrix = [
 ]
 
 
-# p depth_first_search(adj_matrix, 1, 4)
+p depth_first_search(adj_matrix, 1, 4)
 puts transitive_closure(adj_matrix, 1, 4) #.to_a.map(&:inspect)

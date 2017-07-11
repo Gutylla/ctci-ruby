@@ -1,39 +1,72 @@
+require 'awesome_print'
 BNode = Struct.new(:data, :left, :right)
 
-def is_bst?(root, prev_node=nil)
-  if root
-    p '*'*100
-    p root
-    p prev_node
-    return false unless is_bst?(root.left, prev_node)
-    return false if prev_node && root.data < prev_node.data
-    prev_node = root
-    return is_bst?(root.right, prev_node)
+def is_bst?(root)
+  # assuming all tree values are positive.
+  prev = BNode.new
+  return is_binary_search_tree_rec(root, prev)
+end
+
+def is_binary_search_tree_rec(root, prev)
+  return true if root.nil?
+  return false if min && root.val <= min
+  return false if max && root.val >= max
+  if (root.left)
+    return false if (root.left.val >= root.val)
+    return false if !is_valid_bst(root.left, min, root.val)
   end
-  true
+  if (root.right)
+    return false if root.right.val <= root.val
+    return false if !is_valid_bst(root.right, root.val, max)
+  end
+  return true
+end
+
+def inorder(root, results=[])
+  return unless root
+  inorder(root.left, results)
+  results << root.data
+  inorder(root.right, results)
+  results
 end
 
 
-# (1..10).to_a.map do |i|
-#   instance_variable_set("@n#{i}", BNode.new(i))
-# end
+(1..10).to_a.map do |i|
+  instance_variable_set("@n#{i}", BNode.new(i))
+end
 
-# @n1.left = @n2
-# @n1.right = @n3
-# @n2.left = @n4
-# @n2.right = @n8
-# @n8.left = @n10
-# @n8.right = @n9
-# @n3.left = @n5
-# @n3.right = @n6
-# @n5.right = @n7
+@n1.left = @n2
+@n1.right = @n3
+@n2.left = @n4
+@n2.right = @n8
+@n8.left = @n10
+@n8.right = @n9
+@n3.left = @n5
+@n3.right = @n6
+@n5.right = @n7
 
-# p is_bst?(@n1)
+p is_bst?(@n1)
+p inorder(@n1)
 
+@n5.left = @n3
+@n3.left = @n1
+@n3.right = @n2
+@n1.left = @n1.right = nil
+@n2.left = @n2.right = nil
+@n3.left = @n3.right = nil
+@n5.right = @n7
+@n7.left = @n6
+@n7.right = @n8
+@n8.left = @n8.right = nil
+
+p is_bst?(@n5)
+p inorder(@n5)
 
 root = BNode.new(1)
 root.left = BNode.new(2)
 root.right = BNode.new(5)
 root.left.left = BNode.new(1)
 root.left.right = BNode.new(3)
+
 p is_bst?(root)
+p inorder(root)

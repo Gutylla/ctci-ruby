@@ -4,9 +4,7 @@ DIC = [ "mobile","samsung","sam","sung","man","mango",
 
 def word_break(string)
   return true if string.empty?
-  p string
   str_arr = string.split(//)
-  p str_arr
   (str_arr.count - 1).times do |index|
     if DIC.include?(string[0..index])
       if word_break(string[index..(str_arr.count-index)])

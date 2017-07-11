@@ -22,7 +22,7 @@ def min_window(s, t)
     require_num -= 1 if m[c] >= 0
 
     if require_num.zero?
-      
+
       while true
         cc = s[lbound]
         if m.key?(cc)
@@ -46,3 +46,4 @@ def min_window(s, t)
 end
 
 p min_window("ADOBECODEBANCLABC", 'ABC')
+p min_window("PAQRBCXA", 'ABC')
