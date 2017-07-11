@@ -1,16 +1,14 @@
 BNode = Struct.new(:data, :left, :right)
 
-def is_bst?(root)
-  previous_value = nil
+def is_bst?(root, prev_node=nil)
   if root
-    return false unless is_bst?(root.left)
-    p root.data
-    p previous_value
-    p previous_value && root.data < previous_value
-    p '-'*10
-    return false if previous_value && root.data < previous_value
-    previous_value = root.data
-    return is_bst?(root.right)
+    p '*'*100
+    p root
+    p prev_node
+    return false unless is_bst?(root.left, prev_node)
+    return false if prev_node && root.data < prev_node.data
+    prev_node = root
+    return is_bst?(root.right, prev_node)
   end
   true
 end
@@ -33,7 +31,7 @@ end
 # p is_bst?(@n1)
 
 
-root = BNode.new(4)
+root = BNode.new(1)
 root.left = BNode.new(2)
 root.right = BNode.new(5)
 root.left.left = BNode.new(1)

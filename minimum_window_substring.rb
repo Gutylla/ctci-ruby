@@ -15,19 +15,14 @@ def min_window(s, t)
   require_num = t.size
   minlen = s.size + 1
 
-  p m
-
   s.each_with_index do |c, ubound|
-    p '**'*100
-    p "c : #{c}"
     next unless m.key?(c)
-    p "m : #{m}"
-    p "require_num : #{require_num}"
+
     m[c] -= 1
     require_num -= 1 if m[c] >= 0
-    p "require_num : #{require_num}"
 
     if require_num.zero?
+      
       while true
         cc = s[lbound]
         if m.key?(cc)
@@ -39,11 +34,15 @@ def min_window(s, t)
       end
 
       strlen = ubound - lbound + 1
-      minlen, minstr = strlen, s.slice(lbound, strlen) if minlen > strlen
+      if minlen > strlen
+        minlen = strlen
+        minstr = s.slice(lbound, strlen)
+        p minstr
+      end
       lbound += 1
     end
   end
   minstr.join
 end
 
-p min_window("ABCOD", 'DC')
+p min_window("ADOBECODEBANCLABC", 'ABC')
