@@ -1,27 +1,30 @@
 require 'benchmark/ips'
 
-def stringPermutations(nums)
-  nums = nums.chars
-  if nums.empty?
-    return [[]]
-  else
-    res = []
-    nums.each_with_index do |e, i|
-      rest = nums[0, i] + nums[i + 1..-1]
-      rest_perms = stringPermutations(rest.join(''))
-
-      rest_perms.each do |perm|
-        perm.unshift(e)
-      end
-      res += rest_perms
-    end
-    res
-  end
-
-  res
+def swap_char(input, i, j)
+  input[i], input[j] = input[j], input[i]
+  input
 end
 
-p stringPermutations('ABC')
+def permute_string_rec(input, current_index, ending_index, perms)
+
+  if (current_index == ending_index)
+    perms << input.dup
+    return
+  end
+
+  for i in current_index..ending_index
+    swapped_input = swap_char(input.dup, current_index, i)
+    permute_string_rec(swapped_input, current_index + 1, ending_index, perms)
+  end
+
+  perms.uniq
+end
+
+def permute_string(input)
+  permute_string_rec(input, 0, input.length - 1, [])
+end
+
+p permute_string('GUTTU')
 
 
 # def fact(n)
