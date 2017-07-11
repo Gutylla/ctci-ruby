@@ -46,4 +46,4 @@ def min_window(s, t)
   minstr.join
 end
 
-p min_window("ABCOD", 'DC')
+p min_window("PAQRBCXA", 'ABC')
