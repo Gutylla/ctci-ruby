@@ -1,16 +1,15 @@
 require :awesome_print.to_s
 
-def abcd_sum(arr, target)
-
+def abcd_sum(arr)
   hash = {}
   result = []
   0.upto(arr.length - 1) do |i|
     (i+1).upto(arr.length - 1) do |j|
 
-      if hash[arr[i] + arr[j]] && hash[arr[i] + arr[j]] - arr[i] - arr[j] == 0
-        result << [hash[arr[i] + arr[j]], [arr[i], arr[j]]].flatten
+      if hash[arr[i] + arr[j]]
+        result << [hash[arr[i] + arr[j]], [arr[i], arr[j]]]
       else
-        hash[arr[i] + arr[j]] = arr[i] + arr[j]
+        hash[arr[i] + arr[j]] = [arr[i] , arr[j]]
       end
 
     end
@@ -20,4 +19,4 @@ def abcd_sum(arr, target)
 end
 
 
-p abcd_sum([1,0,-1,0,-2,2], 0)
+p abcd_sum([1,2,3,4])
