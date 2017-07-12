@@ -8,18 +8,18 @@ def is_bst?(root)
 end
 
 def is_binary_search_tree_rec(root, prev)
-
-  return true unless root
-
-  return false unless is_binary_search_tree_rec(root.left, prev)
-
-  return false if (prev.data && prev.data > root.data)
-
-  prev.data = root.data
-
-  return false unless is_binary_search_tree_rec(root.right, prev)
-
-  true
+  return true if root.nil?
+  return false if min && root.val <= min
+  return false if max && root.val >= max
+  if (root.left)
+    return false if (root.left.val >= root.val)
+    return false if !is_valid_bst(root.left, min, root.val)
+  end
+  if (root.right)
+    return false if root.right.val <= root.val
+    return false if !is_valid_bst(root.right, root.val, max)
+  end
+  return true
 end
 
 def inorder(root, results=[])
@@ -62,7 +62,7 @@ p inorder(@n1)
 p is_bst?(@n5)
 p inorder(@n5)
 
-root = BNode.new(4)
+root = BNode.new(1)
 root.left = BNode.new(2)
 root.right = BNode.new(5)
 root.left.left = BNode.new(1)
