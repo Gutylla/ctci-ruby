@@ -40,5 +40,5 @@ def longest_valid_parentheses(s)
   max
 end
 
-p longest_valid_parentheses("()()")
-p longest_valid_parentheses(")")
+p longest_valid_parentheses("()(()))")
+p longest_valid_parentheses(")())")
