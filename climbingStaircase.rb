@@ -16,4 +16,4 @@ def climbingStaircase(n, k, cr=[], r=[])
 end
 
 
-p climbingStaircase(4, 2)
+p climbingStaircase(4, 3)

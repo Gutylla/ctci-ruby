@@ -3,27 +3,24 @@ def climbingStairs(n)
 end
 
 
-def fibo(n, h={})
-
-  return n if n <= 1
-
-  if h[n-1]
-    fib1 = h[n-1]
-  else
-    fib1 = fibo(n-1, h)
-    h[n-1] = fib1
+def fibo(n)
+  if (n == 0 || n == 1)
+    return n
   end
 
-  if h[n-2]
-    fib2 = h[n-2]
-  else
-    fib2 = fibo(n-2, h)
-    h[n-2] = fib2
+  n_1 = 1
+  n_2 = 0
+  res = 0
+
+  i = 1
+  while (i <= n)
+    res = n_1 + n_2
+    n_2 = n_1
+    n_1 = res
+    i += 1
   end
 
-
-  fib1 + fib2
-
+  res
 end
 
 

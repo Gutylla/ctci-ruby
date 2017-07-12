@@ -40,12 +40,15 @@ def get_fibonacci(n)
     i+=1
   end
 
-  return res
+  res
 end
 require 'benchmark/ips'
 
-Benchmark.ips do |x|
-  x.report("no optimization")    { get_fibonacci_rec(10) }
-  x.report("optimized") { get_fibonacci(10) }
-  x.compare!
-end
+# Benchmark.ips do |x|
+#   x.report("no optimization")    { get_fibonacci_rec(10) }
+#   x.report("optimized") { get_fibonacci(10) }
+#   x.compare!
+# end
+
+
+p get_fibonacci(5)

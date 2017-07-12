@@ -3,7 +3,7 @@
 # @return {Integer[][]}
 def combination_sum3(k, n)
 
-  helper(k, n, (1..9).to_a)
+  helper(k, n, [-3,-2,-1,0,0,1,2,3].sort)
 
 end
 
@@ -36,4 +36,4 @@ def helper(k, target, candidates, current_items=[], results=[])
 end
 
 
-p combination_sum3(2, 18)
+p combination_sum3(4, 0)

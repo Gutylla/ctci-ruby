@@ -32,7 +32,9 @@ def num_distinct(s, t)
     end
   end
 
+  p dp.to_a.each {|r| puts r.inspect}
+
   dp[m][n]
 end
 
-p num_distinct('ashish', 'ih')
+p num_distinct('asihish', 'ih')

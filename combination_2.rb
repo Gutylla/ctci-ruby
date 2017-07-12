@@ -2,10 +2,10 @@
 # @param {Integer} target
 # @return {Integer[][]}
 def combination_sum2(candidates, target)
-    results = []
-    candidates.sort!
-    combine(candidates, 0, target, [], results)
-    results
+  results = []
+  candidates.sort!
+  combine(candidates, 0, target, [], results)
+  results
 end
 
 def combine(candidates, min, target, list, result)
@@ -24,9 +24,11 @@ def combine(candidates, min, target, list, result)
   end
 end
 
- if(target - candidates[i] >= 0)
-            next if (i > start && candidates[i] == candidates[i-1])
-            t = list.dup
-            t.push(candidates[i]) 
-            combine(candidates, i+1, target - candidates[i], t, results)
-        end
+p combination_sum2((1..10).to_a, 12)
+
+# if(target - candidates[i] >= 0)
+#   next if (i > start && candidates[i] == candidates[i-1])
+#   t = list.dup
+#   t.push(candidates[i])
+#   combine(candidates, i+1, target - candidates[i], t, results)
+# end

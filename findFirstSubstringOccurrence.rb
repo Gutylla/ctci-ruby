@@ -1,3 +1,4 @@
+$prime = 17
 def findFirstSubstringOccurrence(str, pattern)
     return -1 if str.length < pattern.length
 
@@ -35,7 +36,7 @@ def hash(str)
   output % $prime
 end
 
-s = "sst"
-x = "st"
+s = "ashish shish"
+x = "hi"
 
 p findFirstSubstringOccurrence(s, x)
